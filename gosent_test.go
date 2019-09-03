@@ -28,11 +28,7 @@ import (
 //===================================================================
 
 func TestInit(t *testing.T) {
-	sent, err := NewSent("./sent", UTF8, "0")
-	if err != nil {
-		t.Error(err)
-		return
-	}
+	sent := NewSent("./sent", UTF8, "0")
 	score := sent.GetSentimentPoint("我非常恨美国政府，美国政府没有人性！他们挑起战争，伤害无辜！")
 	fmt.Println(score)
 }
