@@ -28,7 +28,7 @@ import (
 //===================================================================
 
 func TestInit(t *testing.T) {
-	sent, err := NewSent("./sent", UTF8, "")
+	sent, err := NewSent("./sent", UTF8, "0")
 	if err != nil {
 		t.Error(err)
 		return
