@@ -28,7 +28,6 @@ package gonlpir
 */
 import "C"
 import (
-	"fmt"
 	"unsafe"
 )
 
@@ -47,9 +46,7 @@ func NewSent(dataPath string, encoding int, licence string) (*NLPIR, error) {
 	l := C.CString(licence)
 	defer C.free(unsafe.Pointer(l))
 
-	if ret := int(C.ST_Init(d, C.int(encoding), l)); ret == 0 {
-		return nil, fmt.Errorf("init failed")
-	}
+	C.ST_Init(d, C.int(encoding), l)
 
 	global_sent_init = true
 
