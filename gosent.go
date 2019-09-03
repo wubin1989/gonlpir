@@ -28,12 +28,13 @@ package gonlpir
 */
 import "C"
 import (
+	"fmt"
 	"unsafe"
 )
 
 var global_sent_init bool = false
 
-func NewSent(dataPath string, encoding int, licence string) *NLPIR {
+func NewSent(dataPath string, encoding int, licence string) (*NLPIR, error) {
 	p := &NLPIR{}
 
 	p.dataPath = dataPath
@@ -46,11 +47,13 @@ func NewSent(dataPath string, encoding int, licence string) *NLPIR {
 	l := C.CString(licence)
 	defer C.free(unsafe.Pointer(l))
 
-	C.ST_Init(d, C.int(encoding), l)
+	if ret := int(C.ST_Init(d, C.int(encoding), l)); ret == 0 {
+		return nil, fmt.Errorf("init failed")
+	}
 
 	global_sent_init = true
 
-	return p
+	return p, nil
 }
 func (this *NLPIR) ExitSent() {
 	if global_sent_init {

@@ -28,7 +28,11 @@ import (
 //===================================================================
 
 func TestInit(t *testing.T) {
-	sent := NewSent("/root/workspace/gonlpir/sent/Data", UTF8, "0")
+	sent, err := NewSent("./sent", UTF8, "")
+	if err != nil {
+		t.Error(err)
+		return
+	}
 	score := sent.GetSentimentPoint("【今日关注】<font color='red'>中法</font><font color='red'>聚变</font>联合研究中心揭牌成立")
 	fmt.Println(score)
 }
