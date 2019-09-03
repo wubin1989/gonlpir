@@ -1,0 +1,13 @@
+sudo: required
+
+language: go
+
+install:
+    - if [ -e /usr/lib64 ]; then sudo cp ictclas/lib/linux64/*.so /usr/lib64/; else sudo cp ictclas/lib/linux64/*.so /usr/lib/; fi
+    - sudo cp ictclas/include/*.h /usr/include
+
+script:
+    - go test -v
+
+notifications:
+    email: false
