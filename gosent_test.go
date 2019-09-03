@@ -33,7 +33,7 @@ func TestInit(t *testing.T) {
 		t.Error(err)
 		return
 	}
-	score := sent.GetSentimentPoint("【今日关注】<font color='red'>中法</font><font color='red'>聚变</font>联合研究中心揭牌成立")
+	score := sent.GetSentimentPoint("我非常恨美国政府，美国政府没有人性！他们挑起战争，伤害无辜！")
 	fmt.Println(score)
 }
 
